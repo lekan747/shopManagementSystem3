@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Shop Management System</title>
@@ -7,226 +8,412 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===============================
+     HEADER
+     ================================= -->
     <header id="mainHeader">
         <h1 class="logo">Shop Management System</h1>
     </header>
 
-
-    <!-- ===== NAVIGATION ===== -->
+    <!-- ===============================
+     NAVIGATION
+   ================================= -->
     <nav id="mainNav">
         <ul class="nav-list">
-            <li><button class="nav-btn" data-section="dashboardSection">Dashboard</button></li>
-            <li><button class="nav-btn" data-section="productsSection">Products</button></li>
-            <li><button class="nav-btn" data-section="salesSection">Sales</button></li>
-            <li><button class="nav-btn" data-section="expensesSection">Expenses</button></li>
-            <li><button class="nav-btn" data-section="reportsSection">Reports</button></li>
-            <li><button class="nav-btn" data-section="creditSection">Credit</button></li>
+
+            <li>
+                <button class="nav-btn active" data-section="dashboardSection">
+                    Dashboard
+                </button>
+            </li>
+
+            <li>
+                <button class="nav-btn" data-section="productsSection">
+                    Products
+                </button>
+            </li>
+
+            <li>
+                <button class="nav-btn" data-section="salesSection">
+                    Sales
+                </button>
+            </li>
+
+            <li>
+                <button class="nav-btn" data-section="expensesSection">
+                    Expenses
+                </button>
+            </li>
+
+            <li>
+                <button class="nav-btn" data-section="reportsSection">
+                    Reports
+                </button>
+            </li>
+
+            <li>
+                <button class="nav-btn" data-section="creditSection">
+                    Credit
+                </button>
+            </li>
+
         </ul>
     </nav>
+
 
 
     <!-- ===== MAIN CONTENT AREA ===== -->
     <main id="mainContent">
 
-        <!-- Dashboard Section -->
-        <section id="dashboardSection" class="content-section">
-            <h2>Dashboard</h2>
+        <!-- ===============================
+     DASHBOARD SECTION
+     ================================= -->
+        <section id="dashboardSection" class="content-section active">
+
+            <h2>Dashboard Overview</h2>
+
             <div class="dashboard-cards">
-                <!-- Cards will be added later -->
+
+                <div class="dashboard-card">
+                    <h3>Total Revenue</h3>
+                    <p id="dashboardRevenue">₦0.00</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Net Profit</h3>
+                    <p id="dashboardNetProfit">₦0.00</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Total Expenses</h3>
+                    <p id="dashboardExpenses">₦0.00</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Top Product</h3>
+                    <p id="dashboardTopProduct">-</p>
+                </div>
+
             </div>
+
         </section>
 
 
 
-        <!-- Products Section -->
+
+        <!-- ===============================
+     PRODUCTS SECTION
+================================= -->
         <section id="productsSection" class="content-section">
-            <h2>Products</h2>
+
+            <h2>Products Management</h2>
+
             <div class="products-container">
 
-    <!-- ADD PRODUCT FORM -->
-    <form id="productForm">
-        <h3>Add New Product</h3>
+                <!-- ===============================
+             ADD / EDIT PRODUCT FORM
+        ================================= -->
+                <form id="productForm">
 
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" required>
+                    <h3 id="productFormTitle">Add New Product</h3>
 
-        <label for="productQuantity">Quantity:</label>
-        <input type="number" id="productQuantity" min="1" required>
+                    <!-- Hidden field for edit mode -->
+                    <input type="hidden" id="editProductIndex">
 
-        <label for="productCostPrice">Cost Price:</label>
-        <input type="number" id="productCostPrice" min="0" required>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
 
-        <label for="productSellPrice">Sell Price:</label>
-        <input type="number" id="productSellPrice" min="0" required>
+                    <div class="form-group">
+                        <label for="productQuantity">Quantity</label>
+                        <input type="number" id="productQuantity" min="1" required>
+                    </div>
 
-        <button type="submit">Add Product</button>
-    </form>
+                    <div class="form-group">
+                        <label for="productCostPrice">Cost Price</label>
+                        <input type="number" id="productCostPrice" min="0" required>
+                    </div>
 
-    <!-- PRODUCT TABLE -->
-    <h3>Product List</h3>
-    <table id="productTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Cost Price</th>
-                <th>Sell Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Products will render here -->
-        </tbody>
-    </table>
+                    <div class="form-group">
+                        <label for="productSellPrice">Sell Price</label>
+                        <input type="number" id="productSellPrice" min="0" required>
+                    </div>
 
-</div>
+                    <button type="submit" id="productSubmitBtn">
+                        Add Product
+                    </button>
+
+                </form>
+
+                <!-- ===============================
+             PRODUCT TABLE
+        ================================= -->
+                <div class="table-wrapper">
+
+                    <h3>Product List</h3>
+
+                    <table id="productTable">
+
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Cost Price</th>
+                                <th>Sell Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <!-- Products will render here -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
 
         </section>
 
 
 
-        <!-- Sales Section -->
+        <!-- ===============================
+     SALES SECTION
+================================= -->
         <section id="salesSection" class="content-section">
-            <h2>Sales</h2>
+
+            <h2>Sales Management</h2>
+
             <div class="sales-container">
 
-    <h3>New Sale</h3>
+                <!-- ===============================
+             NEW SALE FORM
+        ================================= -->
+                <h3>New Sale</h3>
 
-    <form id="saleForm">
+                <form id="saleForm">
 
-        <!-- Search Product -->
-        <label for="productSearch">Search Product:</label>
-<div class="search-wrapper">
-    <input type="text" id="productSearch" placeholder="Enter product name">
-    <div id="searchResults" class="search-results"></div>
-</div>
+                    <!-- Product Search -->
+                    <div class="form-group search-wrapper">
+                        <label for="productSearch">Search Product:</label>
+                        <input type="text" id="productSearch" placeholder="Enter product name">
+                        <div id="searchResults" class="search-results"></div>
+                    </div>
 
-        <!-- Product Info -->
-        <div id="selectedProductInfo"></div>
+                    <!-- Selected Product Info -->
+                    <div id="selectedProductInfo" class="product-info"></div>
 
-        <label for="salePrice">Selling Price:</label>
-        <input type="number" id="salePrice" min="0" required>
+                    <!-- Selling Price -->
+                    <div class="form-group">
+                        <label for="salePrice">Selling Price:</label>
+                        <input type="number" id="salePrice" min="0" required>
+                    </div>
 
-        <label for="saleQuantity">Quantity:</label>
-        <input type="number" id="saleQuantity" min="1" required>
+                    <!-- Quantity -->
+                    <div class="form-group">
+                        <label for="saleQuantity">Quantity:</label>
+                        <input type="number" id="saleQuantity" min="1" required>
+                    </div>
 
-        <label for="paymentType">Payment Type:</label>
-<select id="paymentType">
-    <option value="cash">Cash</option>
-    <option value="transfer">Transfer</option>
-    <option value="credit">Credit</option>
-</select>
+                    <!-- Payment Type -->
+                    <div class="form-group">
+                        <label for="paymentType">Payment Type:</label>
+                        <select id="paymentType">
+                            <option value="cash">Cash</option>
+                            <option value="transfer">Transfer</option>
+                            <option value="credit">Credit</option>
+                        </select>
+                    </div>
 
-<!-- Customer Name (Only for Credit) -->
-<div id="customerField" style="display: none;">
-    <label for="customerName">Customer Name:</label>
-    <input type="text" id="customerName">
-</div>
+                    <!-- Customer Name (Only for Credit) -->
+                    <div class="form-group hidden" id="customerField">
+                        <label for="customerName">Customer Name:</label>
+                        <input type="text" id="customerName">
+                    </div>
 
-        <button type="submit">Complete Sale</button>
-    </form>
-    <h3>Sales History</h3>
+                    <button type="submit" id="saleSubmitBtn">Complete Sale</button>
+                </form>
 
-<table id="salesTable">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th>Payment</th>
-            <th>Customer</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Sales will render here -->
-    </tbody>
-</table>
+                <!-- ===============================
+             SALES HISTORY TABLE
+        ================================= -->
+                <h3>Sales History</h3>
 
+                <div class="table-wrapper">
+                    <table id="salesTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Customer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sales will render here -->
+                        </tbody>
+                    </table>
+                </div>
 
-</div>
+            </div>
 
         </section>
 
-        <!-- Expenses Section -->
+
+        <!-- ===============================
+     EXPENSES SECTION
+================================= -->
         <section id="expensesSection" class="content-section">
-            <h2>Expenses</h2>
+
+            <h2>Expenses Management</h2>
+
             <div class="expenses-container">
 
-    <h2>Expenses</h2>
+                <!-- ===============================
+             ADD EXPENSE FORM
+        ================================= -->
+                <form id="expenseForm">
 
-    <form id="expenseForm">
-        <input type="text" id="expenseTitle" placeholder="Expense Title" required>
-        <input type="number" id="expenseAmount" placeholder="Amount" required>
-        <button type="submit">Add Expense</button>
-    </form>
+                    <div class="form-group">
+                        <label for="expenseTitle">Expense Title</label>
+                        <input type="text" id="expenseTitle" placeholder="Enter expense title" required>
+                    </div>
 
-    <table id="expensesTable">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Title</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount</label>
+                        <input type="number" id="expenseAmount" placeholder="Enter amount" min="0" required>
+                    </div>
 
-</div>
+                    <button type="submit" id="expenseSubmitBtn">Add Expense</button>
+
+                </form>
+
+                <!-- ===============================
+             EXPENSES TABLE
+        ================================= -->
+                <div class="table-wrapper">
+                    <table id="expensesTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Expenses will render here -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </section>
 
-        <!-- Reports Section -->
+
+        <!-- ===============================
+     REPORTS SECTION
+================================= -->
         <section id="reportsSection" class="content-section">
-            <h2>Reports</h2>
+
+            <h2>Business Reports</h2>
+
             <div class="reports-container">
 
-    <h2>Business Reports</h2>
+                <!-- ===============================
+             REPORT CARDS
+        ================================= -->
+                <div class="report-cards">
 
-    <div class="report-cards">
-        <div class="card">Revenue: ₦<span id="totalRevenue">0</span></div>
-        <div class="card">Cost of Goods: ₦<span id="totalCost">0</span></div>
-        <div class="card">Gross Profit: ₦<span id="grossProfit">0</span></div>
-        <div class="card">Expenses: ₦<span id="totalExpenses">0</span></div>
-        <div class="card">Net Profit: ₦<span id="netProfit">0</span></div>
-        <div class="card">Top Product: <span id="topProduct">-</span></div>
-    </div>
+                    <div class="report-card">
+                        <h3>Total Revenue</h3>
+                        <p>₦<span id="totalRevenue">0</span></p>
+                    </div>
 
-    <canvas id="reportChart"></canvas>
+                    <div class="report-card">
+                        <h3>Cost of Goods</h3>
+                        <p>₦<span id="totalCost">0</span></p>
+                    </div>
 
-</div>
+                    <div class="report-card">
+                        <h3>Gross Profit</h3>
+                        <p>₦<span id="grossProfit">0</span></p>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Total Expenses</h3>
+                        <p>₦<span id="totalExpenses">0</span></p>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Net Profit</h3>
+                        <p>₦<span id="netProfit">0</span></p>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Top Product</h3>
+                        <p><span id="topProduct">-</span></p>
+                    </div>
+
+                </div>
+
+                <!-- ===============================
+             REPORT CHART
+        ================================= -->
+                <div class="chart-wrapper">
+                    <canvas id="reportChart"></canvas>
+                </div>
+
+            </div>
 
         </section>
 
-        <!-- Credit Section -->
+
+        <!-- ===============================
+     CREDIT SECTION
+================================= -->
         <section id="creditSection" class="content-section">
-            <h2>Credit Tracking</h2>
+
+            <h2>Credit Management</h2>
+
             <div class="credit-container">
 
-    <h2>Credit Management</h2>
+                <!-- ===============================
+             CREDIT TABLE
+        ================================= -->
+                <div class="table-wrapper">
+                    <table id="creditTable">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Total Debt</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Credit records will render here -->
+                        </tbody>
+                    </table>
+                </div>
 
-    <table id="creditTable">
-        <thead>
-            <tr>
-                <th>Customer</th>
-                <th>Total Debt</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-</div>
+            </div>
 
         </section>
+
 
     </main>
 
+    <script src="storage.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
