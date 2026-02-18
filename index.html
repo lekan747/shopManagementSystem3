@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <h1 class="logo">Shop Management System</h1>
+    </header>
+
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="mainNav">
+        <ul class="nav-list">
+            <li><button class="nav-btn" data-section="dashboardSection">Dashboard</button></li>
+            <li><button class="nav-btn" data-section="productsSection">Products</button></li>
+            <li><button class="nav-btn" data-section="salesSection">Sales</button></li>
+            <li><button class="nav-btn" data-section="expensesSection">Expenses</button></li>
+            <li><button class="nav-btn" data-section="reportsSection">Reports</button></li>
+            <li><button class="nav-btn" data-section="creditSection">Credit</button></li>
+        </ul>
+    </nav>
+
+
+    <!-- ===== MAIN CONTENT AREA ===== -->
+    <main id="mainContent">
+
+        <!-- Dashboard Section -->
+        <section id="dashboardSection" class="content-section">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards">
+                <!-- Cards will be added later -->
+            </div>
+        </section>
+
+
+
+        <!-- Products Section -->
+        <section id="productsSection" class="content-section">
+            <h2>Products</h2>
+            <div class="products-container">
+
+    <!-- ADD PRODUCT FORM -->
+    <form id="productForm">
+        <h3>Add New Product</h3>
+
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required>
+
+        <label for="productQuantity">Quantity:</label>
+        <input type="number" id="productQuantity" min="1" required>
+
+        <label for="productCostPrice">Cost Price:</label>
+        <input type="number" id="productCostPrice" min="0" required>
+
+        <label for="productSellPrice">Sell Price:</label>
+        <input type="number" id="productSellPrice" min="0" required>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- PRODUCT TABLE -->
+    <h3>Product List</h3>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Cost Price</th>
+                <th>Sell Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Products will render here -->
+        </tbody>
+    </table>
+
+</div>
+
+        </section>
+
+
+
+        <!-- Sales Section -->
+        <section id="salesSection" class="content-section">
+            <h2>Sales</h2>
+            <div class="sales-container">
+
+    <h3>New Sale</h3>
+
+    <form id="saleForm">
+
+        <!-- Search Product -->
+        <label for="productSearch">Search Product:</label>
+<div class="search-wrapper">
+    <input type="text" id="productSearch" placeholder="Enter product name">
+    <div id="searchResults" class="search-results"></div>
+</div>
+
+        <!-- Product Info -->
+        <div id="selectedProductInfo"></div>
+
+        <label for="salePrice">Selling Price:</label>
+        <input type="number" id="salePrice" min="0" required>
+
+        <label for="saleQuantity">Quantity:</label>
+        <input type="number" id="saleQuantity" min="1" required>
+
+        <label for="paymentType">Payment Type:</label>
+<select id="paymentType">
+    <option value="cash">Cash</option>
+    <option value="transfer">Transfer</option>
+    <option value="credit">Credit</option>
+</select>
+
+<!-- Customer Name (Only for Credit) -->
+<div id="customerField" style="display: none;">
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName">
+</div>
+
+        <button type="submit">Complete Sale</button>
+    </form>
+    <h3>Sales History</h3>
+
+<table id="salesTable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Payment</th>
+            <th>Customer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Sales will render here -->
+    </tbody>
+</table>
+
+
+</div>
+
+        </section>
+
+        <!-- Expenses Section -->
+        <section id="expensesSection" class="content-section">
+            <h2>Expenses</h2>
+            <div class="expenses-container">
+
+    <h2>Expenses</h2>
+
+    <form id="expenseForm">
+        <input type="text" id="expenseTitle" placeholder="Expense Title" required>
+        <input type="number" id="expenseAmount" placeholder="Amount" required>
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <table id="expensesTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reportsSection" class="content-section">
+            <h2>Reports</h2>
+            <div class="reports-container">
+
+    <h2>Business Reports</h2>
+
+    <div class="report-cards">
+        <div class="card">Revenue: ₦<span id="totalRevenue">0</span></div>
+        <div class="card">Cost of Goods: ₦<span id="totalCost">0</span></div>
+        <div class="card">Gross Profit: ₦<span id="grossProfit">0</span></div>
+        <div class="card">Expenses: ₦<span id="totalExpenses">0</span></div>
+        <div class="card">Net Profit: ₦<span id="netProfit">0</span></div>
+        <div class="card">Top Product: <span id="topProduct">-</span></div>
+    </div>
+
+    <canvas id="reportChart"></canvas>
+
+</div>
+
+        </section>
+
+        <!-- Credit Section -->
+        <section id="creditSection" class="content-section">
+            <h2>Credit Tracking</h2>
+            <div class="credit-container">
+
+    <h2>Credit Management</h2>
+
+    <table id="creditTable">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Total Debt</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
